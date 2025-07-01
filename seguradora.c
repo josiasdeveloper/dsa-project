@@ -488,8 +488,6 @@ const char* parentescoParaString(GrauParentesco grau) {
             return "NETA";
         case AVO:
             return "AVO";
-        case AVA:
-            return "AVA";
         case OUTRO:
             return "OUTRO";
         default:
@@ -516,7 +514,7 @@ GrauParentesco stringParaParentesco(const char* str) {
     if (strcmp(str, "NETO") == 0) return NETO;
     if (strcmp(str, "NETA") == 0) return NETA;
     if (strcmp(str, "AVO") == 0) return AVO;
-    if (strcmp(str, "AVA") == 0) return AVA;
+
     
     return OUTRO;
 }
@@ -533,75 +531,7 @@ SituacaoConveniado stringParaSituacao(const char* str) {
     return ATIVO; // Padrão
 }
 
-bool validarCPF(const char* cpf) {
-    if (cpf == NULL) {
-        return false;
-    }
-    
-    int len = strlen(cpf);
-    
-    
-    if (len != 11 && len != 14) {
-        return false;
-    }
-    
-    
-    char digitos[12] = {0};
-    int pos = 0;
-    
-    for (int i = 0; i < len && pos < 11; i++) {
-        if (cpf[i] >= '0' && cpf[i] <= '9') {
-            digitos[pos++] = cpf[i];
-        } else if (cpf[i] != '.' && cpf[i] != '-') {
-            return false; // Caractere inválido
-        }
-    }
-    
-    if (pos != 11) {
-        return false;
-    }
-    
-    
-    bool todosIguais = true;
-    for (int i = 1; i < 11; i++) {
-        if (digitos[i] != digitos[0]) {
-            todosIguais = false;
-            break;
-        }
-    }
-    
-    if (todosIguais) {
-        return false;
-    }
-    
-    
-    int soma = 0;
-    for (int i = 0; i < 9; i++) {
-        soma += (digitos[i] - '0') * (10 - i);
-    }
-    
-    int resto = soma % 11;
-    int digito1 = (resto < 2) ? 0 : 11 - resto;
-    
-    if ((digitos[9] - '0') != digito1) {
-        return false;
-    }
-    
-    
-    soma = 0;
-    for (int i = 0; i < 10; i++) {
-        soma += (digitos[i] - '0') * (11 - i);
-    }
-    
-    resto = soma % 11;
-    int digito2 = (resto < 2) ? 0 : 11 - resto;
-    
-    if ((digitos[10] - '0') != digito2) {
-        return false;
-    }
-    
-    return true;
-}
+
 
 void limparBuffer() {
     int c;

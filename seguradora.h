@@ -52,7 +52,6 @@ typedef enum {
     NETO,
     NETA,
     AVO,
-    AVA,
     OUTRO
 } GrauParentesco;
 
@@ -158,7 +157,7 @@ const char* situacaoParaString(SituacaoConveniado situacao);
 const char* parentescoParaString(GrauParentesco grau);
 GrauParentesco stringParaParentesco(const char* str);
 SituacaoConveniado stringParaSituacao(const char* str);
-bool validarCPF(const char* cpf);
+
 void limparBuffer();
 
 

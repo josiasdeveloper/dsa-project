@@ -42,11 +42,6 @@ void menuInserirTitular(SistemaSeguros* sistema) {
     fgets(cpf, sizeof(cpf), stdin);
     cpf[strcspn(cpf, "\n")] = 0;
     
-    if (!validarCPF(cpf)) {
-        printf("❌ CPF inválido!\n");
-        return;
-    }
-    
     printf("Idade: ");
     if (scanf("%d", &idade) != 1) {
         printf("❌ Idade inválida!\n");
@@ -99,11 +94,6 @@ void menuInserirDependente(SistemaSeguros* sistema) {
     fgets(cpfTitular, sizeof(cpfTitular), stdin);
     cpfTitular[strcspn(cpfTitular, "\n")] = 0;
     
-    if (!validarCPF(cpfTitular)) {
-        printf("❌ CPF do titular inválido!\n");
-        return;
-    }
-    
     printf("Nome do Dependente: ");
     fgets(nome, sizeof(nome), stdin);
     nome[strcspn(nome, "\n")] = 0;
@@ -111,11 +101,6 @@ void menuInserirDependente(SistemaSeguros* sistema) {
     printf("CPF do Dependente: ");
     fgets(cpf, sizeof(cpf), stdin);
     cpf[strcspn(cpf, "\n")] = 0;
-    
-    if (!validarCPF(cpf)) {
-        printf("❌ CPF do dependente inválido!\n");
-        return;
-    }
     
     printf("Idade: ");
     if (scanf("%d", &idade) != 1) {
@@ -177,7 +162,6 @@ void menuInserirDependente(SistemaSeguros* sistema) {
         case 12: grau = NETO; break;
         case 13: grau = NETA; break;
         case 14: grau = AVO; break;
-        case 15: grau = AVA; break;
         case 16: grau = OUTRO; break;
         default:
             printf("❌ Opção inválida!\n");
@@ -198,11 +182,6 @@ void menuBuscarConveniado(SistemaSeguros* sistema) {
     printf("CPF: ");
     fgets(cpf, sizeof(cpf), stdin);
     cpf[strcspn(cpf, "\n")] = 0;
-    
-    if (!validarCPF(cpf)) {
-        printf("❌ CPF inválido!\n");
-        return;
-    }
     
     Titular* titular;
     Dependente* dependente;
@@ -239,11 +218,6 @@ void menuExibirDependentes(SistemaSeguros* sistema) {
     fgets(cpf, sizeof(cpf), stdin);
     cpf[strcspn(cpf, "\n")] = 0;
     
-    if (!validarCPF(cpf)) {
-        printf("❌ CPF inválido!\n");
-        return;
-    }
-    
     exibirDependentesTitular(sistema, cpf);
 }
 
@@ -260,11 +234,6 @@ void menuExcluirDependente(SistemaSeguros* sistema) {
     fgets(cpfDependente, sizeof(cpfDependente), stdin);
     cpfDependente[strcspn(cpfDependente, "\n")] = 0;
     
-    if (!validarCPF(cpfTitular) || !validarCPF(cpfDependente)) {
-        printf("❌ CPF inválido!\n");
-        return;
-    }
-    
     if (excluirDependente(sistema, cpfTitular, cpfDependente)) {
         printf("✅ Dependente excluído com sucesso!\n");
     } else {
@@ -279,11 +248,6 @@ void menuExcluirTitular(SistemaSeguros* sistema) {
     printf("CPF do Titular: ");
     fgets(cpf, sizeof(cpf), stdin);
     cpf[strcspn(cpf, "\n")] = 0;
-    
-    if (!validarCPF(cpf)) {
-        printf("❌ CPF inválido!\n");
-        return;
-    }
     
     printf("⚠️  ATENÇÃO: Esta operação também excluirá todos os dependentes deste titular.\n");
     printf("Deseja continuar? (s/N): ");
